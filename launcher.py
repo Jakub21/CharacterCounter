@@ -1,21 +1,7 @@
 ################
-from source import main
-from source import getdefs
+#Launcher for script-mode
 
 
 ################
-def launch():
-    '''Call this to start program.'''
-    defines = getdefs.load()
-    main.getvalues(defines)
-
-
-################
-launch()
-
-
-########
-#ORD(A)     65
-#ORD(Z)     90
-#ORD(a)     97
-#ORD(z)     122
+from src import main
+main.execute()

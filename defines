@@ -1,0 +1,18 @@
+#Note:(Loader does not work properly in some cases)
+str		inp_dir		= \input\
+str		res_dir		= \result\
+str		r_fname		= result.txt
+#Export of data
+bool	printrslt	= True
+bool	rs_tofile	= True
+#Conversion of data
+bool	mergecase	= True
+bool	rem_empty	= True
+bool	app_total	= True
+#Choose what should be in charlist
+str		choosencase	= both
+bool	includenums	= True
+#Defines of ranges specified above
+str		lowercase	= qwertyuiopasdfghjklzxcvbnm
+str		uppercase	= QWERTYUIOPASDFGHJKLZXCVBNM
+str		numberset	= 0123456789
