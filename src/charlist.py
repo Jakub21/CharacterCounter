@@ -19,4 +19,7 @@ def getcl(defines):
     if defines["includenums"]:
         output += defines["numberset"]
     ################
+    if defines["includecust"]:
+        output += defines["customset"]
+    ################
     return output

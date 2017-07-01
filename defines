@@ -3,16 +3,18 @@ str		inp_dir		= \input\
 str		res_dir		= \result\
 str		r_fname		= result.txt
 #Export of data
-bool	printrslt	= True
+bool	termprint	= True
 bool	rs_tofile	= True
 #Conversion of data
 bool	mergecase	= True
-bool	rem_empty	= True
-bool	app_total	= True
+bool	rem_empty	= False
+bool	incr_order	= True
 #Choose what should be in charlist
 str		choosencase	= both
-bool	includenums	= True
+bool	includenums	= False
+bool	includecust	= False
 #Defines of ranges specified above
-str		lowercase	= qwertyuiopasdfghjklzxcvbnm
-str		uppercase	= QWERTYUIOPASDFGHJKLZXCVBNM
+str		lowercase	= abcdefghijklmnopqrstuvwxyz
+str		uppercase	= ABCDEFGHIJKLMNOPQRSTUVWXYZ
 str		numberset	= 0123456789
+str		customset	= {[()]}
