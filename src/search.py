@@ -1,92 +1,53 @@
 ################
-#SearchScript
+def get_total(text, chrlist):
+    amount = 0
+    for c in text:
+        if c in chrlist:
+            amount += 1
+    return amount
 
 
 ################
-def perc(amount, total):
-    '''Get percentage(var1/var2).'''
-    ################
-    q = amount / total
-    q *= 100
-    q = round(q, 4)
-    return q
+def get_amnt(text, c, merge):
+    amount = 0
+    for q in text:
+        if merge: #Ignore case
+            if q.upper() == c or q.lower() == c:
+                amount += 1
+        else: #Case sensitive searching
+            if q == c:
+                amount += 1
+    return amount
 
 
 ################
-def engine(text, c):
-    '''How many times char is found in text.'''
-    ################
-    count = 0
-    for ltr in text:
-        if c == ltr:
-            count += 1
-        #print("'", t, "'", sep = "", end = " ")
-    return count
+def get_perc(total, amount):
+    p = amount / total
+    p *= 100
+    p = round(p, 3)
+    return p
 
 
-def remempty(datalist):
-    '''Removes object from list when their value is (0,0).'''
-    ################
-    i = 0
-    newlist = []
-    for c in datalist:
-        if c[0] != 0:
-            if c[1] != 0:
-                newlist.append(datalist[i])
-        i += 1
-    return newlist
-
-
-def mergecase(datalist):
-    '''Loads results from both lowerc. and upperc. letters and merges them.'''
-    ################
-    index = 0
-    newdata = []
-    for cdata in datalist:
-        c = cdata[2]
-        if c == c.upper():
-            break #When uppercase letter is found
-        uindex = index + 26
-        #print("MCS", c, index, uindex, sep = "\t")
-        new_amount = (datalist[index][0] + datalist[uindex][0])
-        new_perc   = (datalist[index][1] + datalist[uindex][1])
-        newtuple   = (new_amount, new_perc, c)
-        newdata.append(newtuple)
-        index += 1
-    return newdata
 
 
 ################
 def controller(defines, text, chrlist):
-    '''Calls function from this file.'''
-    ################
-    total = 0
+    total = get_total(text, chrlist)
+    data = []
     for c in chrlist:
-        total += engine(text, c)
-        #Amount of listed chars
+        c_amnt = get_amnt(text, c, defines["mergecase"])
+        c_perc = get_perc(total, c_amnt)
+        c_data = (c, c_amnt, c_perc)
+        if defines["mergecase"]:
+            if c not in defines["lowercase"]:
+                data.append(c_data)
+        else:
+            data.append(c_data)
+
+
     ################
-    datalist = []
-    for c in chrlist:
-        amount = engine(text, c)
-        percentage = perc(amount, total)
-        cdata = (amount, percentage, c)
-        datalist.append(cdata)
-    ################
-    if defines["mergecase"]:
-        datalist = mergecase(datalist)
-    ################
-    if defines["rem_empty"]:
-        datalist = remempty(datalist)
-    ################
-    data = {}
-    for i in range(len(datalist)):
-        key = datalist[i][2]
-        val = datalist[i][:-1]
-        d = {key : val,}
-        data.update(d)
-    ################
-    if defines["app_total"]:
-        totaldata = (total, 100)
-        data.update({"__total__" : totaldata})
+    if defines["incr_order"]:
+        data.sort(reverse = True, key=lambda tup: tup[1])
+
     ################
     return data
