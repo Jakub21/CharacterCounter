@@ -31,7 +31,7 @@ def supplement_alphabet(diacritics_letters, basic_alphabet = ALPHABET):
     >>> from char_counter import supplement_alphabet
     >>> german_alphabet = supplement_alphabet(u"äöüß")
     >>> for ga in german_alphabet:
-    ...     print ga
+    ...     print(ga)
     ...
     a
     b
