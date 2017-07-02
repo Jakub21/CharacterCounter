@@ -4,7 +4,7 @@
 try:
     from argparse import ArgumentParser
     from codecs import open as open_coding
-    from string import lowercase as ALPHABET
+    from string import ascii_lowercase as ALPHABET
 except ImportError as error:
     print(str(error))
     exit(1)
@@ -39,12 +39,7 @@ def supplement_alphabet(diacritics_letters, basic_alphabet = ALPHABET):
     ü
     ß
     """
-    alphabet = basic_alphabet
-
-    for dl in diacritics_letters:
-        alphabet += dl
-
-    return alphabet
+    return basic_alphabet + diacritics_letters
 
 def count_letters(filename, alphabet = ALPHABET):
 #   description
