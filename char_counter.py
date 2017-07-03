@@ -42,7 +42,40 @@ def supplement_alphabet(diacritics_letters, basic_alphabet = ALPHABET):
     return basic_alphabet + diacritics_letters
 
 def count_letters(filename, alphabet = ALPHABET):
-#   description
+    '''Count letters in file.
+
+        Parameters
+        ----------
+        filename : str
+            Name of file to count letters in.
+        alphabet : str
+            Set of letters that should be included in searching.
+            Default is english alphabet (abc...xyz)
+
+        Return
+        ------
+        Dictionary
+            Key
+                Letter : str
+            Value
+                Number of occurrences : int
+
+        Example
+        -------
+        >>> from char_counter import count_letters as cl
+        >>> values = cl("lorem_ipsum.txt", "abcdef")
+        >>> for key in values:
+        ...     print(key, values[key])
+        ...
+        a 189
+        b 26
+        c 108
+        d 69
+        e 276
+        f 22
+        >>>
+
+    '''
     letters_dict = init_letters_dictionary(alphabet)
 
     try:
@@ -77,19 +110,34 @@ def init_letters_dictionary(alphabet):
     >>> letters_dict
     >>> {'a': 0, 'c': 0, 'b': 0, 'e': 0, 'd': 0, 'f': 0}
     """
-#   body of function
+    letters_dict = {}
+    for l in alphabet:
+        letters_dict.update({l : 0})
+    return letters_dict
 
 #def sort_polish_alphabet(alphabet):
 #    ...
 #    return alphabet
 
 
+def term_print_dict(dictionary):
+    '''Displays dictionary content as columns in terminal.'''
+    for key in dictionary:
+        spc = " " * (5 - len(key))
+        print(key, spc, dictionary[key], sep = "")
+
+
 if __name__ == "__main__":
-    argparser = ArgumentParser(prog='char_counter.py', description='Program calculates statistical \
-    values of used characters for data from a text file', epilog='Copyright (c) 2017 Jakub21 & pbrus | GitHub')
-    argparser.add_argument('filename', help='name of a file containing a text to parse')
+    argparser = ArgumentParser(
+        prog='char_counter.py',
+        description='Program calculates statistical \
+            values of used characters for data from a text file',
+        epilog='Copyright (c) 2017 Jakub21 & pbrus | GitHub'
+    )
+    argparser.add_argument('filename',
+        help='name of a file containing a text to parse')
     args = argparser.parse_args()
 
     polish_alphabet = supplement_alphabet(u"ąęćłńóśźż")
-    count_letters(args.filename, polish_alphabet)
-
+    letters_dict = count_letters(args.filename, polish_alphabet)
+    term_print_dict(letters_dict)
