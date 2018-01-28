@@ -135,4 +135,4 @@ if __name__ == "__main__":
     polish_alphabet = supplement_alphabet(u"ąęćłńóśźż")
     letters_dict = count_letters(args.filename, polish_alphabet)
     #term_print_dict(letters_dict)
-
+    #add comment to test
