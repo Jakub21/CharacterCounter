@@ -11,16 +11,16 @@ except ImportError as error:
 
 
 def supplement_alphabet(diacritics_letters, basic_alphabet = ALPHABET):
-    """Supplement the latin alphabet by diacritics letters of a given language
+    """Supplement the classical latin alphabet by diacritics letters of a given language
 
     Parameters
     ---------
     diacritics_letters : str
-        an unicode string containing
-        additional lowercase letters
+        An unicode string containing
+        additional lowercase letters.
     basic_alphabet : str
-        must contain lowercase letters
-        the default value is "abc...xyz"
+        Must contain lowercase letters
+        the default value is "abc...xyz".
 
     Return
     ------
@@ -42,40 +42,32 @@ def supplement_alphabet(diacritics_letters, basic_alphabet = ALPHABET):
     return basic_alphabet + diacritics_letters
 
 def count_letters(filename, alphabet = ALPHABET):
-    '''Count letters in file.
+    """Count letters in file.
 
-        Parameters
-        ----------
-        filename : str
-            Name of file to count letters in.
-        alphabet : str
-            Set of letters that should be included in searching.
-            Default is english alphabet (abc...xyz)
+    Parameters
+    ----------
+    filename : str
+        A name of file to count letters in.
+    alphabet : str
+        Set of letters that should be included in searching.
+        Default is the classical Latin alphabet (abc...xyz).
 
-        Return
-        ------
-        Dictionary
-            Key
-                Letter : str
-            Value
-                Number of occurrences : int
+    Return
+    ------
+    A dictionary that returns letters as keys
+    and numbers of occurrence as values.
 
-        Example
-        -------
-        >>> from char_counter import count_letters as cl
-        >>> values = cl("lorem_ipsum.txt", "abcdef")
-        >>> for key in values:
-        ...     print(key, values[key])
-        ...
-        a 189
-        b 26
-        c 108
-        d 69
-        e 276
-        f 22
-        >>>
-
-    '''
+    Example
+    -------
+    >>> from char_counter import count_letters
+    >>> letters_dict = count_letters("lorem_ipsum.txt", "abc")
+    >>> for key in letters_dict:
+    ...     print(key, values[key])
+    ...
+    a 189
+    b 26
+    c 108
+    """
     letters_dict = init_letters_dictionary(alphabet)
 
     try:
@@ -96,7 +88,7 @@ def init_letters_dictionary(alphabet):
     Parameters
     ----------
     alphabet : str
-        a set of letters
+        A set of letters.
 
     Return
     ------
@@ -111,8 +103,10 @@ def init_letters_dictionary(alphabet):
     >>> {'a': 0, 'c': 0, 'b': 0, 'e': 0, 'd': 0, 'f': 0}
     """
     letters_dict = {}
+
     for l in alphabet:
         letters_dict.update({l : 0})
+
     return letters_dict
 
 #def sort_polish_alphabet(alphabet):
@@ -120,11 +114,11 @@ def init_letters_dictionary(alphabet):
 #    return alphabet
 
 
-def term_print_dict(dictionary):
-    '''Displays dictionary content as columns in terminal.'''
-    for key in dictionary:
-        spc = " " * (5 - len(key))
-        print(key, spc, dictionary[key], sep = "")
+#def term_print_dict(dictionary):
+#    '''Displays dictionary content as columns in terminal.'''
+#    for key in dictionary:
+#        spc = " " * (5 - len(key))
+#        print(key, spc, dictionary[key], sep = "")
 
 
 if __name__ == "__main__":
@@ -140,4 +134,5 @@ if __name__ == "__main__":
 
     polish_alphabet = supplement_alphabet(u"ąęćłńóśźż")
     letters_dict = count_letters(args.filename, polish_alphabet)
-    term_print_dict(letters_dict)
+    #term_print_dict(letters_dict)
+    #add comment to test
