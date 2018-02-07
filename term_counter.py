@@ -114,11 +114,11 @@ def init_letters_dictionary(alphabet):
 #    return alphabet
 
 
-#def term_print_dict(dictionary):
-#    '''Displays dictionary content as columns in terminal.'''
-#    for key in dictionary:
-#        spc = " " * (5 - len(key))
-#        print(key, spc, dictionary[key], sep = "")
+def term_print_dict(dictionary):
+    '''Displays dictionary content as columns in terminal.'''
+    for key in dictionary:
+        spc = " " * (5 - len(key))
+        print(key, spc, dictionary[key], sep = "")
 
 
 if __name__ == "__main__":
@@ -134,5 +134,5 @@ if __name__ == "__main__":
 
     polish_alphabet = supplement_alphabet(u"ąęćłńóśźż")
     letters_dict = count_letters(args.filename, polish_alphabet)
-    #term_print_dict(letters_dict)
+    term_print_dict(letters_dict)
     #add comment to test
